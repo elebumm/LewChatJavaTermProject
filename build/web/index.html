@@ -13,8 +13,7 @@ and open the template in the editor.
            
            var webSocket = new WebSocket('ws://localhost:8080/LewisTermProject/chatServerEndpoint');
            webSocket.onmessage = function processMessage(incomingMessage) {
-               if (messageTextArea.value != ""){
-                var jsonData = JSON.parse(incomingMessage.data);
+               var jsonData = JSON.parse(incomingMessage.data);
                if (jsonData.messageType == "ChatMessage") messageTextArea.value += jsonData.name +'(' + jsonData.location + '):' + jsonData.message + '\n';
                else if (jsonData.messageType == "UsersMessage") {
                    userTextArea.value == "";
