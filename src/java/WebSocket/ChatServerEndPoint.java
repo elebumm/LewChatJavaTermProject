@@ -42,8 +42,8 @@ public class ChatServerEndPoint {
             String username = (String) userSession.getUserProperties().get("username");
             if (username==null) {
                 userSession.getUserProperties().put("username", incomingChatMessage.getMessage());
-                outgoingChatMessage.setName("System");
-                outgoingChatMessage.setLocation("California, US");
+                outgoingChatMessage.setName("No-Name");
+                outgoingChatMessage.setLocation("No-Location");
                 userSession.getBasicRemote().sendObject(outgoingChatMessage);
             }
             else{

@@ -26,9 +26,23 @@ and open the template in the editor.
 }
 
 .header {
-    font-family: "Lucida Console", Monaco, monospace
+    font-family: "Lucida Console", Monaco, monospace;
 }
 
 body {
     background-color: #9EDABC;
+}
+
+#print {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+
+#JSONslogan {
+    font-family: "Lucida Console", Monaco, monospace;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
 }

@@ -14,11 +14,17 @@ and open the template in the editor.
            var webSocket = new WebSocket('ws://localhost:8080/LewisTermProject/chatServerEndpoint');
            webSocket.onmessage = function processMessage(incomingMessage) {
                var jsonData = JSON.parse(incomingMessage.data);
-               if (jsonData.messageType == "ChatMessage") messageTextArea.value += jsonData.name +'(' + jsonData.location + '):' + jsonData.message + '\n';
+               if (jsonData.messageType == "ChatMessage") {
+                   messageTextArea.value += jsonData.name +'(' + jsonData.location + '):' + jsonData.message + '\n';
+                   document.getElementById("print").textContent = JSON.stringify(jsonData);
+               }
                else if (jsonData.messageType == "UsersMessage") {
                    userTextArea.value == "";
                    var i = 0;
-                   while (i<jsonData.users.length) userTextArea.value += jsonData.users[i++] + "\n";
+                   while (i<jsonData.users.length) {
+                       userTextArea.value += jsonData.users[i++] + "\n";
+                       
+                   }
                }
            }
            
@@ -60,7 +66,11 @@ and open the template in the editor.
         </select>
         <input type="button" value="Send" onclick="send()" />
         </div>
-    
-    
+        <div id="JSONDATA">
+            <h1 id="JSONslogan">Here is JSON for your current chat phrase</h1>
+    <span id="print">
+        
+    </span>
+        </div>
     </body>
 </html>
