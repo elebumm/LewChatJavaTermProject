@@ -22,7 +22,7 @@ and open the template in the editor.
                    while (i<jsonData.users.length) userTextArea.value += jsonData.users[i++] + "\n";
                }
            }
-       }
+           
             function send() {
                 webSocket.send(JSON.stringify({'message' : messageTextField.value, 'location' : locationSelect.value}));
                 locationSelect.disabled="true";
