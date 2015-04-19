@@ -1,0 +1,34 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Author     : lewismenelaws
+*/
+
+#messageBox {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+#imgdiv {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+#logo {
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+}
+
+.header {
+    font-family: "Lucida Console", Monaco, monospace
+}
+
+body {
+    background-color: #9EDABC;
+}

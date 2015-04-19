@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>LewChat</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+           
+           var webSocket = new WebSocket('ws://localhost:8080/LewisTermProject/chatServerEndpoint');
+           webSocket.onmessage = function processMessage(incomingMessage) {
+               var jsonData = JSON.parse(incomingMessage.data);
+               if (jsonData.messageType == "ChatMessage") messageTextArea.value += jsonData.name +'(' + jsonData.location + '):' + jsonData.message + '\n';
+               else if (jsonData.messageType == "UsersMessage") {
+                   userTextArea.value == "";
+                   var i = 0;
+                   while (i<jsonData.users.length) userTextArea.value += jsonData.users[i++] + "\n";
+               }
+           }
+           
+            function send() {
+                webSocket.send(JSON.stringify({'message' : messageTextField.value, 'location' : locationSelect.value}));
+                locationSelect.disabled="true";
+                messageTextField.value = "";
+            }
+            
+            window.onbeforeunload = function doSomething() {
+                webSocket.onclose = function () {};
+                webSocket.close();
+            }
+            
+            
+        </script>
+        
+        <link rel="stylesheet" type="text/css" href="index.css">
+    </head>
+    <body>
+        <div id="imgdiv">
+        <img src="chat.png" id="logo" >
+        </div>
+        <div id="messageBox">
+            <h1 class="header">Welcome to LewChat!</h1>
+            <p class="header">To get started, enter your name and your location!</p>
+        <textarea id="messageTextArea" readonly="readonly" rows="16" cols="120"></textarea>
+        <textarea id="userTextArea" readonly="readonly" rows="16" cols="8"></textarea><br />
+        <input id="messageTextField" type="text" size="105" />
+        <select id="locationSelect">
+            <option value="North America">North America</option>
+            <option value="South America">South America</option>
+            <option value="Europe">Europe</option>
+            <option value="Africa">Africa</option>
+            <option value="Asia">Asia</option>
+            <option value="Australia/Oceania">Australia/Oceania</option>
+            <option value="Antarctica">Antarctica</option>
+            <option value="Jim's Server">Jim's Server</option>
+        </select>
+        <input type="button" value="Send" onclick="send()" />
+        </div>
+    
+    
+    </body>
+</html>
